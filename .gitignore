@@ -50,3 +50,49 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#Ignore files build by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.dll
+*.lib
+*.sbr
+*.csproj
+*.sln
+
+# Ignore folders by Visual Studio
+*obj/
+*bin/
+*Properties/
+*images/
+*Settings/
+*packages/
+
+#  Ignore image files
+*.ico
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Ignore other files
+*.txt
+*.zip
+
+# Ignore specific file name
+**/packages.config
