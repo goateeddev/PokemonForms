@@ -74,13 +74,13 @@ dkms.conf
 *.sbr
 *.csproj
 *.sln
+*.resx
 
 # Ignore folders by Visual Studio
 *obj/
 *bin/
 *Properties/
 *images/
-*Settings/
 *packages/
 
 #  Ignore image files
