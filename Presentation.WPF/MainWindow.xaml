@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">
     <Grid>
-        <Image Height="423" Width="423" Source="Assets/img/nature/bg_ground.png"></Image>
+        <Image Height="423" Width="423" Source="Assets/img/nature/bg_ground.png" Margin="183.5,30.52,193.5,30.52"></Image>
+        <Image Height="40" Width="40" Source="Assets/img/characters/player_front.png" Margin="183.5,30.52,193.5,30.52"></Image>
+        <Image Height="50" Width="50" Source="Assets/img/nature/boulder001.png" Margin="232,355,518,79"></Image>
+        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="370,124,380,310"></Image>
     </Grid>
 </Window>

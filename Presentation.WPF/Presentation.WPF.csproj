@@ -35,7 +35,7 @@
     <Content Include="Assets\img\characters\player-back.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\img\characters\player-front.png">
+    <Content Include="Assets\img\characters\player_front.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\img\characters\player-left.png">
