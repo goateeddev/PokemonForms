@@ -40,10 +40,11 @@ namespace PokemonFormsApplication
         {
             InitializeComponent();
             Introduction();
-            //InitialiseGame();
         }
 
-        // INTRODUCTION
+        /// <summary>
+        /// Set introduction defaults.
+        /// </summary>
         private void Introduction()
         {
             next_count = 0;
@@ -169,7 +170,6 @@ namespace PokemonFormsApplication
             }
         }
 
-        // GAME INITIALISATIONS
         private void InitialiseGame()
         {
             pnl_intro.Visible = false;
@@ -200,7 +200,7 @@ namespace PokemonFormsApplication
             player.Size = new Size(17, 23);
             player.Location = new Point(12, 16);
             player.BackColor = Color.Transparent;
-            player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters/player-front.png");
+            player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters\\player-front.png");
             currentPanel.Controls.Add(player);
         }
 
@@ -214,7 +214,6 @@ namespace PokemonFormsApplication
 
         private void AppearTimerEventProcessor(object sender, EventArgs e)
         {
-            //timer.Interval = rand.Next(5000, 20000);
             if (!pokemonOnScreen)
             {
                 DrawRandomPokemon();
@@ -232,7 +231,9 @@ namespace PokemonFormsApplication
             }
         }
 
-        // MAIN GAME PLAY
+        /// <summary>
+        /// Draw a random Pokemon on the main game display.
+        /// </summary>
         private void DrawRandomPokemon()
         {
             currentPokemon = Logic.GenerateRandomPokemon();
@@ -445,51 +446,55 @@ namespace PokemonFormsApplication
                 playerPanel = 3;
             }
 
-            if (pokemonPanel == playerPanel && pokemonOnScreen == true && IntersectionDetected(player, pokemonPictureBox) && encounter == false)
+            if (pokemonPanel == playerPanel && pokemonOnScreen && IntersectionDetected(player, pokemonPictureBox) && !encounter)
             {
                 Encounter();
             }
             else if (encounter) { /* Do nothing */ }
             else
             {
-                if (e.KeyCode == Keys.Left)
+                switch (e.KeyCode)
                 {
-                    player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters/player-left.png");
-                    if (!bLeft) player.Left -= mHorizontal;
-                    if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Left += mHorizontal;
-                    bRight = false;
-                    footsteps++;
-                }
-                else if (e.KeyCode == Keys.Right)
-                {
-                    player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters/player-right.png");
-                    if (!bRight) player.Left += mHorizontal;
-                    if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Left -= mHorizontal;
-                    bLeft = false;
-                    footsteps++;
-                }
-                else if (e.KeyCode == Keys.Up)
-                {
-                    player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters/player-back.png");
-                    if (!bTop) player.Top -= mVertical;
-                    if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Top += mVertical;
-                    bBottom = false;
-                    footsteps++;
-                }
-                else if (e.KeyCode == Keys.Down)
-                {
-                    player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters/player-front.png");
-                    if (!bBottom) player.Top += mVertical;
-                    if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Top -= mVertical;
-                    bTop = false;
-                    footsteps++;
+                    case Keys.Left:
+                        player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters\\player-left.png");
+                        if (!bLeft) player.Left -= mHorizontal;
+                        if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Left += mHorizontal;
+                        bRight = false;
+                        footsteps++;
+                        break;
+
+                    case Keys.Right:
+                        player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters\\player-right.png");
+                        if (!bRight) player.Left += mHorizontal;
+                        if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Left -= mHorizontal;
+                        bLeft = false;
+                        footsteps++;
+                        break;
+
+                    case Keys.Up:
+                        player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters\\player-back.png");
+                        if (!bTop) player.Top -= mVertical;
+                        if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Top += mVertical;
+                        bBottom = false;
+                        footsteps++;
+                        break;
+
+                    case Keys.Down:
+                        player.Image = Image.FromFile(DefaultFilePaths.image_path + "characters\\player-front.png");
+                        if (!bBottom) player.Top += mVertical;
+                        if (IntersectionDetected(CurrentPanelPictureBoxes)) player.Top -= mVertical;
+                        bTop = false;
+                        footsteps++;
+                        break;
+
+                    default: break;
                 }
             }
-            //Console.WriteLine("x = " + player.Location.X);
-            //Console.WriteLine("y = " + player.Location.Y);
         }
 
-        // POKEMON ENCOUNTER
+        /// <summary>
+        /// Trigger Pokemon encounter.
+        /// </summary>
         private void Encounter()
         {
             encounter = true;

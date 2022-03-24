@@ -2,19 +2,19 @@
 {
     public static class DefaultFilePaths
     {
-        public static string pokedex_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\Pokedex.csv";
-        public static string pokedex_empty_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\Pokedex_empty.csv";
+        public static string pokedex_path = @"csv\Pokedex.csv";
+        public static string pokedex_empty_path = @"csv\Pokedex_empty.csv";
 
-        public static string pokemon_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\pokemon.csv";
-        public static string types_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\types.csv";
-        public static string moves_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\moves.csv";
-        public static string balls_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\balls.csv";
+        public static string pokemon_path = @"csv\pokemon.csv";
+        public static string types_path = @"csv\types.csv";
+        public static string moves_path = @"csv\moves.csv";
+        public static string balls_path = @"csv\balls.csv";
 
-        public static string pokemon_types_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\pokemon_types.csv";
-        public static string pokemon_moves_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\DataLayer\csv\pokemon_moves.csv";
+        public static string pokemon_types_path = @"csv\pokemon_types.csv";
+        public static string pokemon_moves_path = @"csv\pokemon_moves.csv";
 
-        public static string pokemon_image_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\PokemonFormsApplication\images\pokemon\";
-        public static string image_path = @"C:\Users\Damaani\Documents\GitHub\VisualStudio\Csharp\PokemonFormsApplication\PokemonFormsApplication\images\";
+        public static string pokemon_image_path = @"images\pokemon\";
+        public static string image_path = @"images\";
     }
 
     public static class DefaultsStrings
