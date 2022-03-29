@@ -5,6 +5,8 @@ using System.IO;
 using ClassLayer;
 using CsvHelper;
 using AppSettings;
+using Domain.Model;
+using Domain.Resources;
 
 namespace Infrastructure.DataAccess.Local
 {
@@ -22,7 +24,7 @@ namespace Infrastructure.DataAccess.Local
                         list = reader.GetRecords<Pokemon>().ToList();
                         break;
                     case "type":
-                        list = reader.GetRecords<ClassLayer.Type>().ToList();
+                        list = reader.GetRecords<Domain.Model.Type>().ToList();
                         break;
                     case "move":
                         list = reader.GetRecords<Move>().ToList();
