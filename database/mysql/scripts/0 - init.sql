@@ -53,6 +53,14 @@ CREATE TABLE IF NOT EXISTS `pokemonforms`.`pokemon_move` (
   CONSTRAINT FK_pokemon_move_move FOREIGN KEY (`move_id`) REFERENCES `move`(`move_id`),
   UNIQUE INDEX `ix_pokemon_move` (`pokemon_id` ASC, `move_id` ASC, `minimum_level` ASC));
 
+CREATE TABLE IF NOT EXISTS `pokemonforms`.`pokedex` (
+  `pokedex_id` INT NOT NULL AUTO_INCREMENT,
+  `pokemon_id` INT NOT NULL,
+  `level` INT NOT NULL,
+  PRIMARY KEY (`pokedex_id`),
+  CONSTRAINT FK_pokedex_pokemon FOREIGN KEY (`pokemon_id`) REFERENCES `pokemon`(`pokemon_id`),
+  UNIQUE INDEX `ix_pokedex` (`pokedex_id` ASC, `pokemon_id` ASC, `level` ASC));
+
 INSERT IGNORE INTO
 `pokemonforms`.`type`(`name`)
 VALUES

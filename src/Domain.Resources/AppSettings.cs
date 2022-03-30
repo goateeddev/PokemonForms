@@ -14,7 +14,7 @@
         public static string pokemon_moves_path = @"csv\pokemon_moves.csv";
 
         public static string pokemon_image_path = @"images\pokemon\";
-        public static string image_path = @"images\";
+        public static string image_path = @"Assets\img\";
     }
 
     public static class DefaultsStrings
