@@ -88,28 +88,24 @@ namespace Presentation.WPF
                 Name = "CurrentPokemon"
             };
 
-            Canvas.SetTop(pokemonElement, 117);
-            Canvas.SetLeft(pokemonElement, 225);
+            AddToCanvas(pokemonElement);
             canvas.Children.Add(pokemonElement);
             pokemonOnScreen = true;
 
-            foreach (var obstruction in Obstructions)
+            if (Canvas.GetLeft(pokemonElement) < Canvas.GetLeft(land) ||
+                Canvas.GetLeft(pokemonElement) + pokemonElement.Width > Canvas.GetLeft(land) + land.Width ||
+                Canvas.GetTop(pokemonElement) < Canvas.GetTop(land) ||
+                Canvas.GetTop(pokemonElement) + pokemonElement.Height > Canvas.GetTop(land) + land.Height)
             {
-                if (Canvas.GetLeft(pokemonElement) < Canvas.GetLeft(canvas) ||
-                    Canvas.GetLeft(pokemonElement) + pokemonElement.Width > Canvas.GetLeft(canvas) + canvas.Width ||
-                    Canvas.GetTop(pokemonElement) < Canvas.GetTop(canvas) ||
-                    Canvas.GetTop(pokemonElement) + pokemonElement.Height > Canvas.GetTop(canvas) + canvas.Height)
-                {
-                    canvas.Children.Remove(pokemonElement);
-                    pokemonOnScreen = false;
-                    DrawRandomPokemon();
-                }
-                else if (IntersectionDetected(obstruction, pokemonElement) || IntersectionDetected(obstruction, player))
-                {
-                    canvas.Children.Remove(pokemonElement);
-                    pokemonOnScreen = false;
-                    DrawRandomPokemon();
-                }
+                canvas.Children.Remove(pokemonElement);
+                pokemonOnScreen = false;
+                DrawRandomPokemon();
+            }
+            else if (IntersectionDetected(pokemonElement) || IntersectionDetected(pokemonElement, player))
+            {
+                canvas.Children.Remove(pokemonElement);
+                pokemonOnScreen = false;
+                DrawRandomPokemon();
             }
 
             PokemonDisappearTimer();
@@ -117,6 +113,8 @@ namespace Presentation.WPF
 
         public void MovePlayer(object sender, KeyEventArgs e)
         {
+            var originalTop = Canvas.GetTop(player);
+            var originalLeft = Canvas.GetLeft(player);
             switch (e.Key)
             {
                 case Key.Left:
@@ -125,6 +123,10 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetLeft(player) - player.Width;
                         Canvas.SetLeft(player, newPosition);
+                        if (IntersectionDetected(player))
+                        {
+                            Canvas.SetLeft(player, originalLeft);
+                        }
                     }
                     break;
 
@@ -134,6 +136,10 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetLeft(player) + player.Width;
                         Canvas.SetLeft(player, newPosition);
+                        if (IntersectionDetected(player))
+                        {
+                            Canvas.SetLeft(player, originalLeft);
+                        }
                     }
                     break;
 
@@ -143,6 +149,10 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetTop(player) - player.Height;
                         Canvas.SetTop(player, newPosition);
+                        if (IntersectionDetected(player))
+                        {
+                            Canvas.SetTop(player, originalTop);
+                        }
                     }
                     break;
 
@@ -152,6 +162,10 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetTop(player) + player.Height;
                         Canvas.SetTop(player, newPosition);
+                        if (IntersectionDetected(player))
+                        {
+                            Canvas.SetTop(player, originalTop);
+                        }
                     }
                     break;
 
@@ -212,6 +226,23 @@ namespace Presentation.WPF
         {
             encounter = true;
             //throw new NotImplementedException();
+        }
+
+        private void AddToCanvas(Image element)
+        {
+            var canvasTop = (int)Canvas.GetTop(land);
+            var canvasLeft = (int)Canvas.GetLeft(land);
+
+            var randomTop = new Random().Next(canvasTop, canvasTop + (int)land.Height - (int)element.Height);
+            var randomLeft = new Random().Next(canvasLeft, canvasLeft + (int)land.Width - (int)element.Width);
+
+            Canvas.SetTop(element, randomTop);
+            Canvas.SetLeft(element, randomLeft);
+        }
+
+        private bool IntersectionDetected(Image source)
+        {
+            return Obstructions.Any(obstruction => IntersectionDetected(source, obstruction));
         }
 
         private bool IntersectionDetected(Image source, Image destination)
