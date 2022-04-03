@@ -1,4 +1,4 @@
-﻿using Application.Services.Ports.Outbound.DataAccess;
+﻿using Application.Services;
 using Domain.Model;
 using Domain.Resources;
 using System;
@@ -17,7 +17,7 @@ namespace Presentation.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IPokemonDao _pokemonDao;
+        private readonly PokemonApplicationService _pokemonApplicationService;
 
         private readonly DispatcherTimer _gameTimer = new DispatcherTimer();
         private readonly DispatcherTimer _spawnTimer = new DispatcherTimer();
@@ -30,10 +30,9 @@ namespace Presentation.WPF
         private bool pokemonOnScreen;
         private bool spawnTimerActive;
 
-        public MainWindow(IPokemonDao pokemonDao)
+        public MainWindow(PokemonApplicationService pokemonApplicationService)
         {
-            _pokemonDao = pokemonDao;
-
+            _pokemonApplicationService = pokemonApplicationService;
             InitializeComponent();
             InitialiseGame();
         }
@@ -43,7 +42,7 @@ namespace Presentation.WPF
             canvas.Focus();
             canvas.KeyDown += MovePlayer;
 
-            var allPokemon = _pokemonDao.GetAll();
+            var allPokemon = _pokemonApplicationService.GetAll();
             AllPokemon.AddRange(allPokemon);
 
             foreach (var child in canvas.Children.Cast<Image>().Where(image => image.Uid == "obstruction"))
@@ -84,7 +83,7 @@ namespace Presentation.WPF
 
         private void DrawRandomPokemon()
         {
-            var pokemon = GenerateRandomPokemon();
+            var pokemon = _pokemonApplicationService.GenerateRandomPokemon();
             var pokemonElement = new Image
             {
                 Source = new BitmapImage(new Uri(DefaultFilePaths.image_path + $"pokemon\\{pokemon.PokemonId}.png", UriKind.Relative)),
@@ -106,7 +105,7 @@ namespace Presentation.WPF
                 pokemonOnScreen = false;
                 DrawRandomPokemon();
             }
-            else if (IntersectionDetected(pokemonElement) || IntersectionDetected(pokemonElement, player))
+            else if (_pokemonApplicationService.IntersectionDetected(pokemonElement, Obstructions) || _pokemonApplicationService.IntersectionDetected(pokemonElement, player))
             {
                 canvas.Children.Remove(pokemonElement);
                 pokemonOnScreen = false;
@@ -128,7 +127,7 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetLeft(player) - player.Width;
                         Canvas.SetLeft(player, newPosition);
-                        if (IntersectionDetected(player))
+                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetLeft(player, originalLeft);
                         }
@@ -141,7 +140,7 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetLeft(player) + player.Width;
                         Canvas.SetLeft(player, newPosition);
-                        if (IntersectionDetected(player))
+                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetLeft(player, originalLeft);
                         }
@@ -154,7 +153,7 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetTop(player) - player.Height;
                         Canvas.SetTop(player, newPosition);
-                        if (IntersectionDetected(player))
+                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetTop(player, originalTop);
                         }
@@ -167,7 +166,7 @@ namespace Presentation.WPF
                     {
                         var newPosition = Canvas.GetTop(player) + player.Height;
                         Canvas.SetTop(player, newPosition);
-                        if (IntersectionDetected(player))
+                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetTop(player, originalTop);
                         }
@@ -179,7 +178,7 @@ namespace Presentation.WPF
             }
 
             var pokemon = canvas.Children.Cast<Image>().FirstOrDefault(child => child.Name == "CurrentPokemon");
-            if (pokemonOnScreen && IntersectionDetected(player, pokemon) && !encounter)
+            if (pokemonOnScreen && _pokemonApplicationService.IntersectionDetected(player, pokemon) && !encounter)
             {
                 Encounter();
                 encounter = false;
@@ -206,31 +205,9 @@ namespace Presentation.WPF
             _despawnTimer.Stop();
         }
 
-        public Pokemon GenerateRandomPokemon()
-        {
-            var ran = new Random();
-            var match = false;
-
-            while (!match)
-            {
-                foreach (var pokemon in AllPokemon)
-                {
-                    int range = ran.Next(1, 152 * pokemon.Rarity);
-                    if (range == pokemon.Id)
-                    {
-                        match = true;
-                        return pokemon;
-                    }
-                }
-            }
-
-            return default;
-        }
-
         private void Encounter()
         {
             encounter = true;
-            //throw new NotImplementedException();
         }
 
         private void AddToCanvas(Image element)
@@ -243,38 +220,6 @@ namespace Presentation.WPF
 
             Canvas.SetTop(element, randomTop);
             Canvas.SetLeft(element, randomLeft);
-        }
-
-        private bool IntersectionDetected(Image source)
-        {
-            return Obstructions.Any(obstruction => IntersectionDetected(source, obstruction));
-        }
-
-        private bool IntersectionDetected(Image source, Image destination)
-        {
-            var sourceTop = Canvas.GetTop(source);
-            var sourceBottom = sourceTop + source.Height;
-            var sourceLeft = Canvas.GetLeft(source);
-            var sourceRight = sourceLeft + source.Width;
-
-            var destinationTop = Canvas.GetTop(destination);
-            var destinationBottom = destinationTop + destination.Height;
-            var destinationLeft = Canvas.GetLeft(destination);
-            var destinationRight = destinationLeft + destination.Width;
-
-            var topIntersects = sourceTop > destinationTop && sourceTop < destinationBottom &&
-                sourceRight > destinationLeft && sourceRight < destinationRight;
-
-            var bottomIntersects = sourceBottom > destinationTop && sourceBottom < destinationBottom &&
-                sourceRight > destinationLeft && sourceRight < destinationRight;
-
-            var leftIntersects = sourceLeft > destinationLeft && sourceLeft < destinationRight &&
-                sourceTop >= destinationTop && sourceTop < destinationBottom;
-
-            var rightIntersects = sourceRight > destinationLeft && sourceRight < destinationRight &&
-                sourceTop > destinationTop && sourceTop < destinationBottom;
-
-            return topIntersects || bottomIntersects || leftIntersects || rightIntersects;
         }
     }
 }

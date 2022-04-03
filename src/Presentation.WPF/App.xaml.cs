@@ -1,14 +1,9 @@
-﻿using Application.Services.Ports.Outbound.DataAccess;
+﻿using Application.Services;
+using Application.Services.Ports.Outbound.DataAccess;
 using Infrastructure.DataAccess.MySQL;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using TradeUB.Infrastructure.DataAccess.Database;
 
@@ -20,6 +15,7 @@ namespace Presentation.WPF
     public partial class App : System.Windows.Application
     {
         private readonly IServiceProvider _serviceProvider;
+
         public App()
         {
             var connectionString = $"server=localhost;port=3306;database=pokemonforms;uid=root;pwd=p@ssw0rd;";
@@ -29,6 +25,7 @@ namespace Presentation.WPF
             serviceDescriptors.AddLogging();
             serviceDescriptors.AddSingleton<MainWindow>();
             serviceDescriptors.AddSingleton<DbClient>();
+            serviceDescriptors.AddSingleton<PokemonApplicationService>();
             serviceDescriptors.AddSingleton<IPokemonDao, PokemonDao>();
 
             _serviceProvider = serviceDescriptors.BuildServiceProvider();
