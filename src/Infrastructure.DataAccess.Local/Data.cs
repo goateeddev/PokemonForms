@@ -63,7 +63,7 @@ namespace Infrastructure.DataAccess.Local
             Pokemon pokemon = new Pokemon();
             pokemon.Id = int.Parse(values[0]);
             pokemon.Name = values[1];
-            pokemon.Level = int.Parse(values[2]);
+            pokemon.LowestLevel = int.Parse(values[2]);
             pokemon.Rarity = int.Parse(values[3]);
             return pokemon;
         }
@@ -87,7 +87,7 @@ namespace Infrastructure.DataAccess.Local
                         {
                             list.Add(p.Id);
                             list.Add(p.Name);
-                            list.Add(p.Level.ToString());
+                            list.Add(p.LowestLevel.ToString());
                             list.Add(p.Rarity.ToString());
                             list.Add(p.Type);
                             list.Add(p.Moves);

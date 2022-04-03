@@ -4,7 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Level { get; set; }
+        public int LowestLevel { get; set; }
+        public int? EvolutionLevel { get; set; }
         public int Rarity { get; set; }
 
         public string PokemonId => Id switch

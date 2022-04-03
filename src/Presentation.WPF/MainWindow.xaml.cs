@@ -1,19 +1,13 @@
-﻿using Domain.Model;
+﻿using Application.Services.Ports.Outbound.DataAccess;
+using Domain.Model;
 using Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Presentation.WPF
@@ -23,23 +17,34 @@ namespace Presentation.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IPokemonDao _pokemonDao;
+
         private readonly DispatcherTimer _gameTimer = new DispatcherTimer();
         private readonly DispatcherTimer _spawnTimer = new DispatcherTimer();
+        private readonly DispatcherTimer _despawnTimer = new DispatcherTimer();
+
+        private readonly List<Image> Obstructions = new List<Image>();
+        private List<Pokemon> AllPokemon = new List<Pokemon>(151);
+
         private bool encounter;
         private bool pokemonOnScreen;
         private bool spawnTimerActive;
-        DispatcherTimer _pokemonTimer = new DispatcherTimer();
-        readonly List<Image> Obstructions = new List<Image>();
-        readonly List<Pokemon> AllPokemon = new List<Pokemon>(151);
 
-        public MainWindow()
+        public MainWindow(IPokemonDao pokemonDao)
         {
-            InitializeComponent();
+            _pokemonDao = pokemonDao;
 
+            InitializeComponent();
+            InitialiseGame();
+        }
+
+        private void InitialiseGame()
+        {
             canvas.Focus();
             canvas.KeyDown += MovePlayer;
 
-            AllPokemon = new List<Pokemon> { new Pokemon { Id = 1, Name = "Bulbasaur", Level = 5, Rarity = 1 } };
+            var allPokemon = _pokemonDao.GetAll();
+            AllPokemon.AddRange(allPokemon);
 
             foreach (var child in canvas.Children.Cast<Image>().Where(image => image.Uid == "obstruction"))
             {
@@ -183,10 +188,10 @@ namespace Presentation.WPF
 
         private void PokemonDisappearTimer()
         {
-            _pokemonTimer.Tick += new EventHandler(DisappearTimerEventHandler);
-            _pokemonTimer.Interval = new TimeSpan(0, 0, 8);
-            _pokemonTimer.IsEnabled = true;
-            _pokemonTimer.Start();
+            _despawnTimer.Tick += new EventHandler(DisappearTimerEventHandler);
+            _despawnTimer.Interval = new TimeSpan(0, 0, 8);
+            _despawnTimer.IsEnabled = true;
+            _despawnTimer.Start();
         }
 
         private void DisappearTimerEventHandler(object sender, EventArgs e)
@@ -198,7 +203,7 @@ namespace Presentation.WPF
                 pokemonOnScreen = false;
                 SpawnPokemon();
             }
-            _pokemonTimer.Stop();
+            _despawnTimer.Stop();
         }
 
         public Pokemon GenerateRandomPokemon()

@@ -572,8 +572,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application.Services\Application.Services.csproj" />
     <ProjectReference Include="..\Domain.Model\Domain.Model.csproj" />
     <ProjectReference Include="..\Domain.Resources\Domain.Resources.csproj" />
+    <ProjectReference Include="..\Infrastructure.DataAccess.MySQL\Infrastructure.DataAccess.MySQL.csproj" />
   </ItemGroup>
 
 </Project>
