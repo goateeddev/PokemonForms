@@ -183,31 +183,31 @@ namespace LogicLayer
             switch (pokemon.rarity)
             {
                 case 1:
-                    outcome = tries >= 10 ? true : false;
+                    outcome = tries >= 10;
                     break;
                 case 2:
-                    outcome = tries >= 10 ? true : false;
+                    outcome = tries >= 10;
                     break;
                 case 5:
-                    outcome = tries >= 10 ? true : false;
+                    outcome = tries >= 10;
                     break;
                 case 10:
-                    outcome = tries >= 20 ? true : false;
+                    outcome = tries >= 20;
                     break;
                 case 15:
-                    outcome = tries >= 20 ? true : false;
+                    outcome = tries >= 20;
                     break;
                 case 20:
-                    outcome = tries >= 30 ? true : false;
+                    outcome = tries >= 30;
                     break;
                 case 50:
-                    outcome = tries >= 30 ? true : false;
+                    outcome = tries >= 30;
                     break;
                 case 75:
-                    outcome = tries >= 40 ? true : false;
+                    outcome = tries >= 40;
                     break;
                 case 100:
-                    outcome = tries >= 40 ? true : false;
+                    outcome = tries >= 40;
                     break;
             }
             return outcome;

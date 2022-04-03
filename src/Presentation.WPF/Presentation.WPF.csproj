@@ -572,6 +572,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain.Model\Domain.Model.csproj" />
     <ProjectReference Include="..\Domain.Resources\Domain.Resources.csproj" />
   </ItemGroup>
 

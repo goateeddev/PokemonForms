@@ -2,21 +2,16 @@
 {
     public class Pokemon
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int level { get; set; }
-        public int rarity { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public int Rarity { get; set; }
 
-        public Pokemon(int id, string name, int level, int rarity)
+        public string PokemonId => Id switch
         {
-            this.id = id;
-            this.name = name;
-            this.level = level;
-            this.rarity = rarity;
-        }
-
-        public Pokemon()
-        {
-        }
+            < 10 => $"00{Id}",
+            < 100 => $"0{Id}",
+            _ => null
+        };
     }
 }

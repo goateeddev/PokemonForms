@@ -61,10 +61,10 @@ namespace Infrastructure.DataAccess.Local
         {
             string[] values = csv_line.Split(',');
             Pokemon pokemon = new Pokemon();
-            pokemon.id = int.Parse(values[0]);
-            pokemon.name = values[1];
-            pokemon.level = int.Parse(values[2]);
-            pokemon.rarity = int.Parse(values[3]);
+            pokemon.Id = int.Parse(values[0]);
+            pokemon.Name = values[1];
+            pokemon.Level = int.Parse(values[2]);
+            pokemon.Rarity = int.Parse(values[3]);
             return pokemon;
         }
 
@@ -85,12 +85,12 @@ namespace Infrastructure.DataAccess.Local
                     {
                         foreach (PokedexEntry p in Pokedex)
                         {
-                            list.Add(p.id);
-                            list.Add(p.name);
-                            list.Add(p.level.ToString());
-                            list.Add(p.rarity.ToString());
-                            list.Add(p.type);
-                            list.Add(p.moves);
+                            list.Add(p.Id);
+                            list.Add(p.Name);
+                            list.Add(p.Level.ToString());
+                            list.Add(p.Rarity.ToString());
+                            list.Add(p.Type);
+                            list.Add(p.Moves);
                             row = string.Join(",", list.Select(CsvFormatter.Escape));
                             list.Clear();
                             csv.WriteLine(row);

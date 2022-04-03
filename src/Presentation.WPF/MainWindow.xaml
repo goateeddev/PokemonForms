@@ -3,46 +3,46 @@
     <Canvas Name="canvas" Focusable="True">
         <Image Name="land" Height="450" Width="450" Source="Assets/img/nature/bg_ground.png" Canvas.Left="175" Canvas.Top="17"/>
         <Image Name="player" Height="25" Width="25" Source="Assets/img/characters/player_front.png" Canvas.Left="175" Canvas.Top="17"/>
-        <Image Height="50" Width="50" Source="Assets/img/nature/boulder001.png" Margin="175,417,575,17"></Image>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Margin="275,417,475,17"/>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,17,525,417"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,67,525,367"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,117,525,317"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,167,525,267"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,217,525,217"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="475,17,275,417"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="375,17,375,417"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="325,17,425,417"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="275,17,475,417"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="525,17,225,417"></Image>
-        <Image Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="425,17,325,417"></Image>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,17,175,417"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,67,175,367"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,117,175,317"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,167,175,267"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,217,175,217"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="475,117,275,317"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="375,117,375,317"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,117,425,317"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,117,325,317"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,317,425,117"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="225,317,525,117"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="175,317,575,117"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="275,317,475,117"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,417,325,17"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,417,425,17"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="175,367,575,67"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="375,417,375,17"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,167,425,267"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,217,425,217"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,167,325,267"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,217,325,217"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,317,325,117"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,367,325,67"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,317,175,117"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,367,175,67"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,417,175,17"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Margin="475,417,275,17"/>
-        <Image Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Margin="525,417,225,17"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/boulder001.png" Margin="175,417,575,17"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Margin="275,417,475,17"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,17,525,417"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,67,525,367"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="225" Canvas.Top="117"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,167,525,267"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="225,217,525,217"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="475,17,275,417"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="375,17,375,417"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="325,17,425,417"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="275,17,475,417"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="525,17,225,417"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Margin="425,17,325,417"></Image>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,17,175,417"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,67,175,367"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,117,175,317"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,167,175,267"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,217,175,217"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="475,117,275,317"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="375,117,375,317"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,117,425,317"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,117,325,317"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,317,425,117"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="225,317,525,117"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="175,317,575,117"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="275,317,475,117"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,417,325,17"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,417,425,17"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="175,367,575,67"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="375,417,375,17"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,167,425,267"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="325,217,425,217"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,167,325,267"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,217,325,217"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,317,325,117"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="425,367,325,67"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,317,175,117"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,367,175,67"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Margin="575,417,175,17"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Margin="475,417,275,17"/>
+        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Margin="525,417,225,17"/>
     </Canvas>
 </Window>
