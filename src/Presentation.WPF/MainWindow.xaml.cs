@@ -19,12 +19,12 @@ namespace Presentation.WPF
     {
         private readonly PokemonApplicationService _pokemonApplicationService;
 
-        private readonly DispatcherTimer _gameTimer = new DispatcherTimer();
-        private readonly DispatcherTimer _spawnTimer = new DispatcherTimer();
-        private readonly DispatcherTimer _despawnTimer = new DispatcherTimer();
+        private readonly DispatcherTimer _gameTimer = new();
+        private readonly DispatcherTimer _spawnTimer = new();
+        private readonly DispatcherTimer _despawnTimer = new();
 
-        private readonly List<Image> Obstructions = new List<Image>();
-        private List<Pokemon> AllPokemon = new List<Pokemon>(151);
+        private readonly List<Image> Obstructions = new();
+        private readonly List<Pokemon> AllPokemon = new(151);
 
         private bool encounter;
         private bool pokemonOnScreen;
@@ -39,15 +39,17 @@ namespace Presentation.WPF
 
         private void InitialiseGame()
         {
+            gameText.Text = DisplayText.Game_Description;
+
             canvas.Focus();
             canvas.KeyDown += MovePlayer;
 
             var allPokemon = _pokemonApplicationService.GetAll();
             AllPokemon.AddRange(allPokemon);
 
-            foreach (var child in canvas.Children.Cast<Image>().Where(image => image.Uid == "obstruction"))
+            foreach (var child in canvas.Children.Cast<UIElement>().Where(element => element is Image && ((Image)element).Uid == "obstruction"))
             {
-                Obstructions.Add(child);
+                Obstructions.Add((Image)child);
             }
 
             _gameTimer.Tick += GameLifetime;
@@ -86,13 +88,13 @@ namespace Presentation.WPF
             var pokemon = _pokemonApplicationService.GenerateRandomPokemon();
             var pokemonElement = new Image
             {
-                Source = new BitmapImage(new Uri(DefaultFilePaths.image_path + $"pokemon\\{pokemon.PokemonId}.png", UriKind.Relative)),
+                Source = new BitmapImage(new Uri($"Assets\\img\\pokemon\\{pokemon.PokemonId}.png", UriKind.Relative)),
                 Width = 39,
                 Height = 45,
                 Name = "CurrentPokemon"
             };
 
-            AddToCanvas(pokemonElement);
+            RandomisePositionOnCanvas(pokemonElement);
             canvas.Children.Add(pokemonElement);
             pokemonOnScreen = true;
 
@@ -105,7 +107,7 @@ namespace Presentation.WPF
                 pokemonOnScreen = false;
                 DrawRandomPokemon();
             }
-            else if (_pokemonApplicationService.IntersectionDetected(pokemonElement, Obstructions) || _pokemonApplicationService.IntersectionDetected(pokemonElement, player))
+            else if (PokemonApplicationService.IntersectionDetected(pokemonElement, Obstructions) || PokemonApplicationService.IntersectionDetected(pokemonElement, player))
             {
                 canvas.Children.Remove(pokemonElement);
                 pokemonOnScreen = false;
@@ -122,12 +124,12 @@ namespace Presentation.WPF
             switch (e.Key)
             {
                 case Key.Left:
-                    player.Source = new BitmapImage(new Uri(DefaultFilePaths.image_path + "characters\\player_left.png", UriKind.Relative));
+                    player.Source = new BitmapImage(new Uri("Assets\\img\\characters\\player_left.png", UriKind.Relative));
                     if (Canvas.GetLeft(player) > Canvas.GetLeft(land))
                     {
                         var newPosition = Canvas.GetLeft(player) - player.Width;
                         Canvas.SetLeft(player, newPosition);
-                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
+                        if (PokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetLeft(player, originalLeft);
                         }
@@ -135,12 +137,12 @@ namespace Presentation.WPF
                     break;
 
                 case Key.Right:
-                    player.Source = new BitmapImage(new Uri(DefaultFilePaths.image_path + "characters\\player_right.png", UriKind.Relative));
+                    player.Source = new BitmapImage(new Uri("Assets\\img\\characters\\player_right.png", UriKind.Relative));
                     if (Canvas.GetLeft(player) + player.Width < Canvas.GetLeft(land) + land.Width)
                     {
                         var newPosition = Canvas.GetLeft(player) + player.Width;
                         Canvas.SetLeft(player, newPosition);
-                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
+                        if (PokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetLeft(player, originalLeft);
                         }
@@ -148,12 +150,12 @@ namespace Presentation.WPF
                     break;
 
                 case Key.Up:
-                    player.Source = new BitmapImage(new Uri(DefaultFilePaths.image_path + "characters\\player_back.png", UriKind.Relative));
+                    player.Source = new BitmapImage(new Uri("Assets\\img\\characters\\player_back.png", UriKind.Relative));
                     if (Canvas.GetTop(player) > Canvas.GetTop(land))
                     {
                         var newPosition = Canvas.GetTop(player) - player.Height;
                         Canvas.SetTop(player, newPosition);
-                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
+                        if (PokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetTop(player, originalTop);
                         }
@@ -161,12 +163,12 @@ namespace Presentation.WPF
                     break;
 
                 case Key.Down:
-                    player.Source = new BitmapImage(new Uri(DefaultFilePaths.image_path + "characters\\player_front.png", UriKind.Relative));
+                    player.Source = new BitmapImage(new Uri("Assets\\img\\characters\\player_front.png", UriKind.Relative));
                     if (Canvas.GetTop(player) + player.Height < Canvas.GetTop(land) + land.Height)
                     {
                         var newPosition = Canvas.GetTop(player) + player.Height;
                         Canvas.SetTop(player, newPosition);
-                        if (_pokemonApplicationService.IntersectionDetected(player, Obstructions))
+                        if (PokemonApplicationService.IntersectionDetected(player, Obstructions))
                         {
                             Canvas.SetTop(player, originalTop);
                         }
@@ -177,8 +179,13 @@ namespace Presentation.WPF
                     break;
             }
 
-            var pokemon = canvas.Children.Cast<Image>().FirstOrDefault(child => child.Name == "CurrentPokemon");
-            if (pokemonOnScreen && _pokemonApplicationService.IntersectionDetected(player, pokemon) && !encounter)
+            var pokemon = canvas.Children
+                .Cast<UIElement>()
+                .Where(element => element is Image)
+                .Select(element => element as Image)
+                .FirstOrDefault(child => child.Name == "CurrentPokemon");
+
+            if (pokemonOnScreen && PokemonApplicationService.IntersectionDetected(player, pokemon) && !encounter)
             {
                 Encounter();
                 encounter = false;
@@ -188,7 +195,7 @@ namespace Presentation.WPF
         private void PokemonDisappearTimer()
         {
             _despawnTimer.Tick += new EventHandler(DisappearTimerEventHandler);
-            _despawnTimer.Interval = new TimeSpan(0, 0, 8);
+            _despawnTimer.Interval = new TimeSpan(0, 0, 5);
             _despawnTimer.IsEnabled = true;
             _despawnTimer.Start();
         }
@@ -197,7 +204,11 @@ namespace Presentation.WPF
         {
             if (!encounter)
             {
-                var pokemon = canvas.Children.Cast<Image>().FirstOrDefault(child => child.Name == "CurrentPokemon");
+                var pokemon = canvas.Children
+                    .Cast<UIElement>()
+                    .Where(element => element is Image)
+                    .Select(element => element as Image)
+                    .FirstOrDefault(child => child.Name == "CurrentPokemon"); 
                 canvas.Children.Remove(pokemon);
                 pokemonOnScreen = false;
                 SpawnPokemon();
@@ -210,7 +221,7 @@ namespace Presentation.WPF
             encounter = true;
         }
 
-        private void AddToCanvas(Image element)
+        private void RandomisePositionOnCanvas(Image element)
         {
             var canvasTop = (int)Canvas.GetTop(land);
             var canvasLeft = (int)Canvas.GetLeft(land);

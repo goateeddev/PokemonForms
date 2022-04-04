@@ -3,8 +3,6 @@ using Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Application.Services
@@ -45,12 +43,12 @@ namespace Application.Services
             return default;
         }
 
-        public bool IntersectionDetected(Image source, List<Image> obstructions)
+        public static bool IntersectionDetected(Image source, List<Image> obstructions)
         {
             return obstructions.Any(obstruction => IntersectionDetected(source, obstruction));
         }
 
-        public bool IntersectionDetected(Image source, Image destination)
+        public static bool IntersectionDetected(Image source, Image destination)
         {
             var sourceTop = Canvas.GetTop(source);
             var sourceBottom = sourceTop + source.Height;

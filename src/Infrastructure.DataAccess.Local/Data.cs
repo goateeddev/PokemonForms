@@ -54,7 +54,7 @@ namespace Infrastructure.DataAccess.Local
 
         public static List<Pokemon> ReadPokedata(string file_path)
         {
-            return File.ReadAllLines(DefaultFilePaths.pokemon_path).Skip(1).Select(line => GetPokemonField(line)).ToList();
+            return File.ReadAllLines("csv\\pokemon.csv").Skip(1).Select(line => GetPokemonField(line)).ToList();
         }
 
         public static Pokemon GetPokemonField(string csv_line)
@@ -70,7 +70,7 @@ namespace Infrastructure.DataAccess.Local
 
         public static bool WritePokedex(IEnumerable<PokedexEntry> Pokedex)
         {
-            StreamWriter csv = new StreamWriter(DefaultFilePaths.pokedex_path);
+            StreamWriter csv = new StreamWriter("csv\\pokemon.csv");
             List<string> list = new List<string>();
             try
             {
@@ -119,7 +119,7 @@ namespace Infrastructure.DataAccess.Local
 
         public static bool WriteBalls(List<Ball> Balls)
         {
-            StreamWriter csv = new StreamWriter(DefaultFilePaths.balls_path);
+            StreamWriter csv = new StreamWriter("csv\\balls.csv");
             List<string> list = new List<string>();
             try
             {
