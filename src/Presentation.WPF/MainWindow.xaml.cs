@@ -50,7 +50,7 @@ namespace Presentation.WPF
             MainCanvas.KeyDown += MovePlayer;
 
             __player = PlayerService.InitialisePlayer(MainCanvas);
-            Obstructions = LandscapeService.ConfigureObstructions(LandView.ViewCanvas).ToList();
+            Obstructions = LandscapeService.ConfigureObstructions(LandView.Canvas).ToList();
 
             var allPokemon = _pokemonApplicationService.GetAll();
             AllPokemon.AddRange(allPokemon);

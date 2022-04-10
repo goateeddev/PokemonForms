@@ -3,7 +3,6 @@ using Application.Services.Ports.Outbound.DataAccess;
 using Infrastructure.DataAccess.MySQL;
 using Microsoft.Extensions.DependencyInjection;
 using MySql.Data.MySqlClient;
-using Presentation.WPF.Service;
 using System;
 using System.Windows;
 using TradeUB.Infrastructure.DataAccess.Database;

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Presentation.WPF.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="450">
-    <Canvas Name="landViewCanvas" Focusable="True" FocusVisualStyle="{x:Null}">
+    <Canvas Name="LandViewCanvas" Focusable="True" FocusVisualStyle="{x:Null}">
         <Image Name="land" Height="450" Width="450"  Canvas.Left="0" Canvas.Top="0" Source="/Assets/img/nature/bg_ground.png"/>
         <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Canvas.Left="0" Canvas.Top="400"/>
         <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Canvas.Left="100" Canvas.Top="400"/>

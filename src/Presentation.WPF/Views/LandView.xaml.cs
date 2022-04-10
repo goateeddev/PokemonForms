@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace Presentation.WPF.Views
 {
@@ -20,7 +7,7 @@ namespace Presentation.WPF.Views
     /// </summary>
     public partial class LandView : UserControl
     {
-        public static Canvas ViewCanvas { get; private set; }
+        public static Canvas Canvas { get; private set; }
 
         public LandView()
         {
@@ -30,7 +17,7 @@ namespace Presentation.WPF.Views
 
         private void SetCanvas()
         {
-            ViewCanvas = landViewCanvas;
+            Canvas = LandViewCanvas;
         }
     }
 }
