@@ -1,51 +1,16 @@
-﻿<Window x:Class="Presentation.WPF.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:Presentation.WPF" mc:Ignorable="d"
+﻿<Window x:Class="Presentation.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation.WPF"
+        xmlns:views="clr-namespace:Presentation.WPF.Views"
+        mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <Canvas Name="canvas" Focusable="True" FocusVisualStyle="{x:Null}">
+    <Canvas Name="MainCanvas" Focusable="True" FocusVisualStyle="{x:Null}">
+        <views:LandView x:Name="Landscape" Height="450" Width="450" Canvas.Left="175" Canvas.Top="17"/>
         <Border BorderThickness="1" BorderBrush="#444" Canvas.Left="175" Canvas.Top="480">
             <TextBlock Name="gameText" Height="50" Width="450" TextWrapping="WrapWithOverflow"/>
         </Border>
-        <Image Name="land" Height="450" Width="450" Source="Assets/img/nature/bg_ground.png" Canvas.Left="175" Canvas.Top="17"/>
-        <Image Name="player" Height="25" Width="25" Source="Assets/img/characters/player_front.png" Canvas.Left="175" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/boulder001.png" Canvas.Left="175" Canvas.Top="417"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Canvas.Left="275" Canvas.Top="417"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="225" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="225" Canvas.Top="67"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="225" Canvas.Top="117"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="225" Canvas.Top="167"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="225" Canvas.Top="217"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="475" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="375" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="325" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="275" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="525" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="Assets/img/nature/tree001.png" Canvas.Left="425" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="17"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="67"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="117"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="167"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="217"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="475" Canvas.Top="117"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="375" Canvas.Top="117"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="325" Canvas.Top="117"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="425" Canvas.Top="117"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="325" Canvas.Top="317"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="225" Canvas.Top="317"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="175" Canvas.Top="317"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="275" Canvas.Top="317"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="425" Canvas.Top="417"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="325" Canvas.Top="417"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="175" Canvas.Top="367"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="375" Canvas.Top="417"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="325" Canvas.Top="167"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="325" Canvas.Top="217"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="425" Canvas.Top="167"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="425" Canvas.Top="217"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="425" Canvas.Top="317"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="425" Canvas.Top="367"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="317"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="367"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/tree001.png" Canvas.Left="575" Canvas.Top="417"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Canvas.Left="475" Canvas.Top="417"/>
-        <Image Uid="obstruction" Height="50" Width="50" Source="/Assets/img/nature/boulder001.png" Canvas.Left="525" Canvas.Top="417"/>
     </Canvas>
 </Window>
